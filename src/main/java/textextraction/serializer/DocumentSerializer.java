@@ -23,7 +23,7 @@ public class DocumentSerializer {
    * 
    * @throws SerializerException If something went wrong on serializing the document.
    */
-  byte[] serialize(Document doc, SerializationFormat format) throws SerializerException {
+  public byte[] serialize(Document doc, SerializationFormat format) throws SerializerException {
     return serialize(doc, format, ElementClass.getElementClasses());
   }
 
@@ -38,8 +38,8 @@ public class DocumentSerializer {
    * 
    * @throws SerializerException If something went wrong on serializing the document.
    */
-  byte[] serialize(Document doc, SerializationFormat format, Collection<ElementClass> clazzes)
-          throws SerializerException {
+  public byte[] serialize(Document doc, SerializationFormat format,
+          Collection<ElementClass> clazzes) throws SerializerException {
     switch (format) {
       case XML:
         return new XmlDocumentSerializer().serialize(doc, clazzes);
