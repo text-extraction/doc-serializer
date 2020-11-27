@@ -1,35 +1,35 @@
 package textextraction.serializer;
 
-import static textextraction.serializer.SerializerConstants.B;
-import static textextraction.serializer.SerializerConstants.CHARACTER;
-import static textextraction.serializer.SerializerConstants.CHARACTERS;
-import static textextraction.serializer.SerializerConstants.COLOR;
-import static textextraction.serializer.SerializerConstants.COLORS;
-import static textextraction.serializer.SerializerConstants.DEFAULT_ENCODING;
-import static textextraction.serializer.SerializerConstants.DOCUMENT;
-import static textextraction.serializer.SerializerConstants.FIGURE;
-import static textextraction.serializer.SerializerConstants.FIGURES;
-import static textextraction.serializer.SerializerConstants.FONT;
-import static textextraction.serializer.SerializerConstants.FONTS;
-import static textextraction.serializer.SerializerConstants.FONTSIZE;
-import static textextraction.serializer.SerializerConstants.G;
-import static textextraction.serializer.SerializerConstants.HEIGHT;
-import static textextraction.serializer.SerializerConstants.ID;
-import static textextraction.serializer.SerializerConstants.IS_BOLD;
-import static textextraction.serializer.SerializerConstants.IS_ITALIC;
-import static textextraction.serializer.SerializerConstants.MAX_X;
-import static textextraction.serializer.SerializerConstants.MAX_Y;
-import static textextraction.serializer.SerializerConstants.MIN_X;
-import static textextraction.serializer.SerializerConstants.MIN_Y;
-import static textextraction.serializer.SerializerConstants.NAME;
-import static textextraction.serializer.SerializerConstants.PAGE;
-import static textextraction.serializer.SerializerConstants.PAGES;
-import static textextraction.serializer.SerializerConstants.POSITION;
-import static textextraction.serializer.SerializerConstants.R;
-import static textextraction.serializer.SerializerConstants.SHAPE;
-import static textextraction.serializer.SerializerConstants.SHAPES;
-import static textextraction.serializer.SerializerConstants.TEXT;
-import static textextraction.serializer.SerializerConstants.WIDTH;
+import static textextraction.serializer.DocumentSerializerConstants.B;
+import static textextraction.serializer.DocumentSerializerConstants.CHARACTER;
+import static textextraction.serializer.DocumentSerializerConstants.CHARACTERS;
+import static textextraction.serializer.DocumentSerializerConstants.COLOR;
+import static textextraction.serializer.DocumentSerializerConstants.COLORS;
+import static textextraction.serializer.DocumentSerializerConstants.DEFAULT_ENCODING;
+import static textextraction.serializer.DocumentSerializerConstants.DOCUMENT;
+import static textextraction.serializer.DocumentSerializerConstants.FIGURE;
+import static textextraction.serializer.DocumentSerializerConstants.FIGURES;
+import static textextraction.serializer.DocumentSerializerConstants.FONT;
+import static textextraction.serializer.DocumentSerializerConstants.FONTS;
+import static textextraction.serializer.DocumentSerializerConstants.FONTSIZE;
+import static textextraction.serializer.DocumentSerializerConstants.G;
+import static textextraction.serializer.DocumentSerializerConstants.HEIGHT;
+import static textextraction.serializer.DocumentSerializerConstants.ID;
+import static textextraction.serializer.DocumentSerializerConstants.IS_BOLD;
+import static textextraction.serializer.DocumentSerializerConstants.IS_ITALIC;
+import static textextraction.serializer.DocumentSerializerConstants.MAX_X;
+import static textextraction.serializer.DocumentSerializerConstants.MAX_Y;
+import static textextraction.serializer.DocumentSerializerConstants.MIN_X;
+import static textextraction.serializer.DocumentSerializerConstants.MIN_Y;
+import static textextraction.serializer.DocumentSerializerConstants.NAME;
+import static textextraction.serializer.DocumentSerializerConstants.PAGE;
+import static textextraction.serializer.DocumentSerializerConstants.PAGES;
+import static textextraction.serializer.DocumentSerializerConstants.POSITION;
+import static textextraction.serializer.DocumentSerializerConstants.R;
+import static textextraction.serializer.DocumentSerializerConstants.SHAPE;
+import static textextraction.serializer.DocumentSerializerConstants.SHAPES;
+import static textextraction.serializer.DocumentSerializerConstants.TEXT;
+import static textextraction.serializer.DocumentSerializerConstants.WIDTH;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -54,11 +54,11 @@ import textextraction.common.models.Shape;
 import textextraction.serializer.exception.SerializerException;
 
 /**
- * An implementation of {@link XmlSerializer} that serializes a document in XML format.
+ * An implementation of {@link XmlDocumentSerializer} that serializes a document in XML format.
  *
  * @author Claudius Korzen
  */
-public class XmlSerializer implements Serializer {
+public class XmlDocumentSerializer {
   /**
    * The indentation length.
    */
@@ -87,19 +87,23 @@ public class XmlSerializer implements Serializer {
   /**
    * Creates a new serializer that serializes a document in XML format.
    */
-  public XmlSerializer() {
+  public XmlDocumentSerializer() {
     this.usedFonts = new HashSet<>();
     this.usedColors = new HashSet<>();
   }
 
   // ==============================================================================================
 
-  @Override
-  public byte[] serialize(Document doc) throws SerializerException {
-    return serialize(doc, ElementClass.getElementClasses());
-  }
-
-  @Override
+  /**
+   * Serializes the elements with the given types of the given document in XML format.
+   * 
+   * @param doc     The document to serialize.
+   * @param clazzes The types of elements to serialize from the document.
+   * 
+   * @return The serialization as a byte array.
+   * 
+   * @throws SerializerException If something went wrong on serializing the document.
+   */
   public byte[] serialize(Document doc, Collection<ElementClass> clazzes)
           throws SerializerException {
     if (doc == null) {

@@ -5,7 +5,7 @@ package textextraction.serializer;
  * 
  * @author Claudius Korzen
  */
-public class SerializerConstants {
+public class DocumentSerializerConstants {
   /**
    * The default encoding to use on serializing.
    */
