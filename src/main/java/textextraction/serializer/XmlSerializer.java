@@ -30,13 +30,16 @@ import static textextraction.serializer.SerializerConstants.SHAPE;
 import static textextraction.serializer.SerializerConstants.SHAPES;
 import static textextraction.serializer.SerializerConstants.TEXT;
 import static textextraction.serializer.SerializerConstants.WIDTH;
+
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import org.apache.commons.lang3.StringEscapeUtils;
+
 import textextraction.common.models.Character;
 import textextraction.common.models.Color;
 import textextraction.common.models.Document;
@@ -543,7 +546,7 @@ public class XmlSerializer implements Serializer {
     }
 
     List<String> result = new ArrayList<>();
-    int[] rgb = color.getRGB();
+    int[] rgb = color.getRgb();
 
     if (rgb != null && rgb.length == 3) {
       result.add(start(COLOR, level));

@@ -1,6 +1,7 @@
 package textextraction.serializer;
 
 import java.util.Collection;
+
 import textextraction.common.models.Document;
 import textextraction.common.models.ElementClass;
 import textextraction.serializer.exception.SerializerException;

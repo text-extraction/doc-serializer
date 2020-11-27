@@ -1,4 +1,4 @@
-package textextraction.serializer.exception.model;
+package textextraction.serializer.model;
 
 import java.util.Collection;
 import java.util.HashMap;
